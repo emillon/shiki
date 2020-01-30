@@ -18,6 +18,7 @@ import { getTheme, TTheme, IShikiTheme } from 'shiki-themes'
 export interface HighlighterOptions {
   theme: TTheme | IShikiTheme
   langs?: TLang[]
+  extraRegistrations?: ILanguageRegistration[]
 }
 
 export async function getHighlighter(options: HighlighterOptions) {
@@ -36,7 +37,10 @@ export async function getHighlighter(options: HighlighterOptions) {
     langs = options.langs
   }
 
-  const langRegistrations = getLangRegistrations(langs)
+  const extraRegistrations = options.extraRegistrations || []
+
+  const langRegistrations =
+      getLangRegistrations(langs).concat(extraRegistrations)
 
   const s = new Shiki(t, langRegistrations)
   return await s.getHighlighter()
