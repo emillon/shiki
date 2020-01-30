@@ -16,5 +16,6 @@
     "typescript": "^3.2.2"
   },
   "dependencies": {},
-  "license": "MIT"
+  "license": "MIT",
+  "version": "0.1.6+extra-registrations"
 }
